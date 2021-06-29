@@ -208,6 +208,13 @@
 #define SEND_SANYO_AC          _IR_ENABLE_DEFAULT_
 #endif  // SEND_SANYO_AC
 
+#ifndef DECODE_SANYO_AC88
+#define DECODE_SANYO_AC88      _IR_ENABLE_DEFAULT_
+#endif  // DECODE_SANYO_AC88
+#ifndef SEND_SANYO_AC88
+#define SEND_SANYO_AC88        _IR_ENABLE_DEFAULT_
+#endif  // SEND_SANYO_AC88
+
 #ifndef DECODE_MITSUBISHI
 #define DECODE_MITSUBISHI      _IR_ENABLE_DEFAULT_
 #endif  // DECODE_MITSUBISHI
@@ -774,7 +781,7 @@
      DECODE_MITSUBISHI112 || DECODE_HITACHI_AC424 || DECODE_HITACHI_AC3 || \
      DECODE_HITACHI_AC344 || DECODE_CORONA_AC || DECODE_SANYO_AC || \
      DECODE_VOLTAS || DECODE_MIRAGE || DECODE_HAIER_AC176 || \
-     DECODE_TEKNOPOINT || \
+     DECODE_TEKNOPOINT || DECODE_SANYO_AC88 || \
      false)
   // Add any DECODE to the above if it uses result->state (see kStateSizeMax)
   // you might also want to add the protocol to hasACState function
@@ -917,8 +924,9 @@ enum decode_type_t {
   TRUMA,  // 100
   HAIER_AC176,
   TEKNOPOINT,
+  SANYO_AC88,
   // Add new entries before this one, and update it to point to the last entry.
-  kLastDecodeType = TEKNOPOINT,
+  kLastDecodeType = SANYO_AC88,
 };
 
 // Message lengths & required repeat values
@@ -1103,6 +1111,9 @@ const uint16_t kSamsungAcExtendedBits = kSamsungAcExtendedStateLength * 8;
 const uint16_t kSamsungAcDefaultRepeat = kNoRepeat;
 const uint16_t kSanyoAcStateLength = 9;
 const uint16_t kSanyoAcBits = kSanyoAcStateLength * 8;
+const uint16_t kSanyoAc88StateLength = 11;
+const uint16_t kSanyoAc88Bits = kSanyoAc88StateLength * 8;
+const uint16_t kSanyoAc88MinRepeat = 2;
 const uint16_t kSanyoSA8650BBits = 12;
 const uint16_t kSanyoLC7461AddressBits = 13;
 const uint16_t kSanyoLC7461CommandBits = 8;
